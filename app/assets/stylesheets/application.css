@@ -79,16 +79,6 @@
   background-color: #0056b3;
 }
 
-.forgot-password-link {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgot-password-link:hover {
-  text-decoration: underline;
-}
-
 .additional-links {
   margin-top: 15px;
 }
