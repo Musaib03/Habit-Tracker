@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_20_061552) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_20_182932) do
+  create_table "salahs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "salah_name"
+    t.string "where_prayed"
+    t.text "prayed_at_home_why"
+    t.string "prayed_timeliness"
+    t.text "reason"
+    t.string "prayed_congregation"
+    t.time "prayed_time"
+    t.string "transportation"
+    t.string "concentration"
+    t.boolean "sunnah_prayed"
+    t.boolean "tasbih_done"
+    t.string "tasbih_concentration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_salahs_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -29,5 +48,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_20_061552) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "salahs", "users"
   add_foreign_key "sessions", "users"
 end
