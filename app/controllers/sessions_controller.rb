@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to new_salah_path, notice: "Welcome! Please log your Salah."
     else
       flash.now[:alert] = "Invalid email address or password."
-      render :new 
+      render :new
     end
   end
 
