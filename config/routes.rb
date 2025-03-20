@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  get "salah_tracker/index"
   resource :session, only: [ :new, :create, :destroy ] # Handles login/logout
   resources :passwords, param: :token               # Handles password resets
 
   # Root path should direct to the login page
   root to: "sessions#new"
-  get "dashboard", to: "salah_tracker#index", as: :dashboard
   # Health check for monitoring (optional)
   get "up" => "rails/health#show", as: :rails_health_check
   get "/logout", to: "sessions#destroy", as: :logout
