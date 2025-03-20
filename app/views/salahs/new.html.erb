@@ -1,0 +1,76 @@
+<h1>Log Your Salah</h1>
+
+<!-- Display flash messages -->
+<% if flash[:notice] %>
+  <p style="color: green;"><%= flash[:notice] %></p>
+<% elsif flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with model: @salah, local: true do |form| %>
+  <div>
+    <%= form.label :salah_name %>
+    <%= form.text_field :salah_name %>
+  </div>
+
+  <div>
+    <%= form.label :where_prayed %>
+    <%= form.select :where_prayed, ['Home', 'Masjid', 'Other'] %>
+  </div>
+
+  <div>
+    <%= form.label :prayed_at_home_why %>
+    <%= form.text_area :prayed_at_home_why %>
+  </div>
+
+  <div>
+    <%= form.label :prayed_timeliness %>
+    <%= form.select :prayed_timeliness, ['Late', 'Early', 'On Time'] %>
+  </div>
+
+  <div>
+    <%= form.label :reason %>
+    <%= form.text_area :reason %>
+  </div>
+
+  <div>
+    <%= form.label :prayed_congregation %>
+    <%= form.select :prayed_congregation, ['Congregation', 'Alone'] %>
+  </div>
+
+  <div>
+    <%= form.label :prayed_time %>
+    <%= form.time_field :prayed_time %>
+  </div>
+
+  <div>
+    <%= form.label :transportation %>
+    <%= form.text_field :transportation %>
+  </div>
+
+  <div>
+    <%= form.label :concentration %>
+    <%= form.select :concentration, ['High', 'Moderate', 'Low'] %>
+  </div>
+
+  <div>
+    <%= form.label :sunnah_prayed %>
+    <%= form.check_box :sunnah_prayed %>
+  </div>
+
+  <div>
+    <%= form.label :tasbih_done %>
+    <%= form.check_box :tasbih_done %>
+  </div>
+
+  <div>
+    <%= form.label :tasbih_concentration %>
+    <%= form.select :tasbih_concentration, ['High', 'Moderate', 'Low'], include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Save Salah" %>
+  </div>
+<% end %>
+
+<%= link_to "Logout", session_path, data: { confirm: "Are you sure you want to log out?" }, class: "btn btn-danger" %>
