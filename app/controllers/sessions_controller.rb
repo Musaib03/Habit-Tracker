@@ -26,5 +26,4 @@ class SessionsController < ApplicationController
   def start_new_session_for(user)
     session[:user_id] = user.id
   end
-
 end

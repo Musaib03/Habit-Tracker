@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "salah_tracker/index"
-  resource :session, only: [:new, :create, :destroy] # Handles login/logout
+  resource :session, only: [ :new, :create, :destroy ] # Handles login/logout
   resources :passwords, param: :token               # Handles password resets
 
   # Root path should direct to the login page
