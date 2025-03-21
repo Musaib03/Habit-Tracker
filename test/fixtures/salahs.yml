@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  salah_name: MyString
+  where_prayed: MyString
+  prayed_at_home_why: MyText
+  prayed_timeliness: MyString
+  reason: MyText
+  prayed_congregation: MyString
+  prayed_time: 2025-03-20 23:59:32
+  transportation: MyString
+  concentration: MyString
+  sunnah_prayed: false
+  tasbih_done: false
+  tasbih_concentration: MyString
+
+two:
+  user: two
+  salah_name: MyString
+  where_prayed: MyString
+  prayed_at_home_why: MyText
+  prayed_timeliness: MyString
+  reason: MyText
+  prayed_congregation: MyString
+  prayed_time: 2025-03-20 23:59:32
+  transportation: MyString
+  concentration: MyString
+  sunnah_prayed: false
+  tasbih_done: false
+  tasbih_concentration: MyString
