@@ -1,109 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Log Your Salah</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-  <div class="navbar">
-    <div class="logo">Salah Tracker</div>
-    <div class="user-info">
-      <i class="fas fa-user"></i> User
-      <i class="fas fa-clock"></i> <%= Time.now.strftime("%I:%M %p") %>
-    </div>
-  </div>
-  <div class="container">
-    <div class="form-container">
-      <%= form_with model: @salah, local: true do |form| %>
-        <div class="form-group">
-          <%= form.label :salah_name %>
-          <%= form.select :salah_name, ['Fajr', 'Zuhar', 'Asar', 'Maghrib', 'Isha'], {}, { id: 'salah_name' } %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :where_prayed %>
-          <%= form.select :where_prayed, ['Masjid', 'Home', 'Other'], {}, { id: 'where_prayed' } %>
-        </div>
-        <div id="prayed_at_home_why_container" class="form-group" style="display: none;">
-        <%= form.label :prayed_at_home_why, "Reason (Home/Other)" %>
-        <%= form.text_area :prayed_at_home_why %>
+<div class="navbar">
+  <div class="logo">Salah Tracker</div>
+  <% if session[:user_id] %>
+    <%= button_to "Logout", session_path, method: :delete, class: "logout-btn" %>
+<% end %>
+</div>
+<div class="container">
+  <div class="form-container">
+    <%= form_with model: @salah, local: true do |form| %>
+      <div class="form-group">
+        <%= form.label :salah_name %>
+        <%= form.select :salah_name, ['Fajr', 'Zuhar', 'Asar', 'Maghrib', 'Isha'], {}, { id: 'salah_name' } %>
       </div>
 
-        <div class="form-group">
-          <%= form.label :prayed_timeliness, "Timeliness" %>
-          <%= form.select :prayed_timeliness, ['On Time', 'Early', 'Late'], {}, { id: 'prayed_timeliness' } %>
-        </div>
-
-        <div id="reason_container" class="form-group" style="display: none;">
-          <%= form.label :reason, "Reason (Timeliness)" %>
-          <%= form.text_area :reason %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :prayed_congregation, "Congregation" %>
-          <%= form.select :prayed_congregation, ['Yes', 'No'], include_blank: true %>
-          <%= form.label :prayed_time, "Time" %>
-          <%= form.time_field :prayed_time %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :transportation, "Transport" %>
-          <%= form.select :transportation, ['Walked', 'Car', 'Bus', 'Other'], include_blank: true %>
-          <%= form.label :concentration, "Focus Level" %>
-          <%= form.select :concentration, ['High', 'Moderate', 'Low'], include_blank: true %>
-        </div>
-
-        <div class="form-group">
-          <%= form.check_box :sunnah_prayed, {}, true, false %>
-          <%= form.label :sunnah_prayed, "Sunnah Prayed" %>
-          <%= form.check_box :tasbih_done, { id: 'tasbih_done' }, true, false %>
-          <%= form.label :tasbih_done, "Tasbih Done" %>
-        </div>
-
-        <div id="tasbih_concentration_container" class="form-group" style="display: none;">
-          <%= form.label :tasbih_concentration, "Tasbih Focus" %>
-          <%= form.select :tasbih_concentration, ['High', 'Moderate', 'Low'], include_blank: true %>
-        </div>
-
-        <div class="form-group">
-          <%= form.submit "Save Salah" %>
-        </div>
-      <% end %>
+      <div class="form-group">
+        <%= form.label :where_prayed %>
+        <%= form.select :where_prayed, ['Masjid', 'Home', 'Other'], {}, { id: 'where_prayed' } %>
+      </div>
+      <div id="prayed_at_home_why_container" class="form-group" style="display: none;">
+      <%= form.label :prayed_at_home_why, "Reason (Home/Other)" %>
+      <%= form.text_area :prayed_at_home_why %>
     </div>
 
-    <div class="table-container">
-      <h2>Prayer Times</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Prayer</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Fajr</td>
-            <td>5:00 AM</td>
-          </tr>
-          <tr>
-            <td>Dhuhr</td>
-            <td>12:30 PM</td>
-          </tr>
-          <tr>
-            <td>Asr</td>
-            <td>4:15 PM</td>
-          </tr>
-          <tr>
-            <td>Maghrib</td>
-            <td>6:45 PM</td>
-          </tr>
-          <tr>
-            <td>Isha</td>
-            <td>8:00 PM</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="form-group">
+        <%= form.label :prayed_timeliness, "Timeliness" %>
+        <%= form.select :prayed_timeliness, ['On Time', 'Early', 'Late'], {}, { id: 'prayed_timeliness' } %>
+      </div>
+
+      <div id="reason_container" class="form-group" style="display: none;">
+        <%= form.label :reason, "Reason (Timeliness)" %>
+        <%= form.text_area :reason %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :prayed_congregation, "Congregation" %>
+        <%= form.select :prayed_congregation, ['Yes', 'No'], include_blank: true %>
+        <%= form.label :prayed_time, "Time" %>
+        <%= form.time_field :prayed_time %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :transportation, "Transport" %>
+        <%= form.select :transportation, ['Walked', 'Car', 'Bus', 'Other'], include_blank: true %>
+        <%= form.label :concentration, "Focus Level" %>
+        <%= form.select :concentration, ['High', 'Moderate', 'Low'], include_blank: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.check_box :sunnah_prayed, {}, true, false %>
+        <%= form.label :sunnah_prayed, "Sunnah Prayed" %>
+        <%= form.check_box :tasbih_done, { id: 'tasbih_done' }, true, false %>
+        <%= form.label :tasbih_done, "Tasbih Done" %>
+      </div>
+
+      <div id="tasbih_concentration_container" class="form-group" style="display: none;">
+        <%= form.label :tasbih_concentration, "Tasbih Focus" %>
+        <%= form.select :tasbih_concentration, ['High', 'Moderate', 'Low'], include_blank: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.submit "Save Salah" %>
+      </div>
+    <% end %>
   </div>
-</body>
-</html>
+</div>
