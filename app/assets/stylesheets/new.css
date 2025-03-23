@@ -12,6 +12,9 @@ body {
 }
 
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 94%;
   background: linear-gradient(90deg, #28a745, #218838, #1e7e34);
   padding: 15px 40px;  
@@ -19,24 +22,36 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .logo {
   margin-left: 50px; 
 }
 
-.logout {
-  margin-right: 20px; 
+.nav-links {
+  display: flex;
+  gap: 15px; 
+  margin-right: 50px; 
 }
+
 .wrapper {
   display: flex;
   flex-grow: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.view-salahs-btn, .logout-btn {
+  background-color: white;
+  color: #218838;
+  border: none;
+  padding: 1px 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .form-container {
@@ -74,7 +89,7 @@ textarea {
 }
 
 input[type="submit"] {
-  background-color: #0056b3;
+  background-color: #218838;
   color: #fff;
   padding: 12px;
   border: none;
@@ -85,5 +100,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #003f8a;
+  background-color: #0d8508;
 }

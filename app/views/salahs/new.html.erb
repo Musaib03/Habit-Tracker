@@ -1,9 +1,13 @@
 <div class="navbar">
   <div class="logo">Salah Tracker</div>
   <% if session[:user_id] %>
-    <%= button_to "Logout", session_path, method: :delete, class: "logout-btn" %>
-<% end %>
+    <div class="nav-links">
+      <%= link_to "View Salahs", "/salahs/index", class: "view-salahs-btn" %>
+      <%= link_to "Logout", session_path, method: :delete, class: "logout-btn" %>
+    </div>
+  <% end %>
 </div>
+
 <div class="container">
   <div class="form-container">
     <%= form_with model: @salah, local: true do |form| %>
