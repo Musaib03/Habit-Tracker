@@ -9,13 +9,12 @@ class SalahsController < ApplicationController
     @salah = current_user.salahs.build(salah_params)
     if @salah.save
       flash[:notice] = "Salah details added successfully."
-      redirect_to new_salah_path # Redirect back to the form to clear the fields
+      redirect_to new_salah_path
     else
       flash.now[:alert] = "Failed to add Salah details."
       render :new
     end
   end
-
 
   def index
     @salahs = current_user.salahs.order(created_at: :desc)
