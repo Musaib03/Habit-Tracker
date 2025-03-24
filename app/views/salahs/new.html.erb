@@ -2,7 +2,7 @@
   <div class="logo">Salah Tracker</div>
   <% if session[:user_id] %>
     <div class="nav-links">
-      <%= link_to "View Salahs", "/salahs/index", class: "view-salahs-btn" %>
+      <%= link_to "View Salahs", salahs_path, class: "view-salahs-btn" %>
       <%= link_to "Logout", session_path, method: :delete, class: "logout-btn" %>
     </div>
   <% end %>
