@@ -1,0 +1,46 @@
+<h1>My Salah Records</h1>
+
+<% if @salahs.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Salah Name</th>
+        <th>Where Prayed</th>
+        <th>Prayed At Home (Why?)</th>
+        <th>Timeliness</th>
+        <th>Reason</th>
+        <th>Congregation</th>
+        <th>Prayed Time</th>
+        <th>Transportation</th>
+        <th>Concentration</th>
+        <th>Sunnah Prayed</th>
+        <th>Tasbih Done</th>
+        <th>Tasbih Concentration</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @salahs.each do |salah| %>
+        <tr>
+          <td><%= salah.salah_name %></td>
+          <td><%= salah.where_prayed %></td>
+          <td><%= salah.prayed_at_home_why %></td>
+          <td><%= salah.prayed_timeliness %></td>
+          <td><%= salah.reason %></td>
+          <td><%= salah.prayed_congregation ? 'Yes' : 'No' %></td>
+          <td><%= salah.prayed_time %></td>
+          <td><%= salah.transportation %></td>
+          <td><%= salah.concentration %></td>
+          <td><%= salah.sunnah_prayed ? 'Yes' : 'No' %></td>
+          <td><%= salah.tasbih_done ? 'Yes' : 'No' %></td>
+          <td><%= salah.tasbih_concentration %></td>
+          <td><%= salah.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Salah records found.</p>
+<% end %>
+
+<a href="<%= new_salah_path %>">Add New Salah</a>
